@@ -8,17 +8,15 @@ export const Textfield = ({ ...props }) => {
             maxWidth: 500,
             width: 500,
             cursor: 'pointer',
-            background: '#80808045'
+            background: '#80808045',
         }
     }
     return (
-        <div>
             <input
                 type="text"
                 value={props.value}
                 onChange={props.onChange}
                 style={styles.textfield}
             />
-        </div>
     )
 }

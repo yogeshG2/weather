@@ -4,12 +4,15 @@ import { Textfield } from '../../Component/Textfield'
 import axios from 'axios'
 import { styles } from './style'
 import { fetchdata } from './api'
+import { Loader } from '../../Component/Loader'
 
 export default function Home() {
   const [City, setCity] = useState('')
   const [Weatherdata, setWeatherdata] = useState({ data: {} })
   const [Opendata, setOpendata] = useState(false)
   const [loading, setloading] = useState(false)
+  const [errorcontent, seterrorcontent] = useState(false)
+
 
 
 
@@ -18,6 +21,7 @@ export default function Home() {
   }
   const submit = () => {
     setloading(true)
+    seterrorcontent(false)
     const inputdata = {
       city: City
     }
@@ -25,6 +29,7 @@ export default function Home() {
       if (res.data.error) {
         setOpendata(false)
         setloading(false)
+        seterrorcontent(true)
       }
       else {
         setWeatherdata({ ...Weatherdata, data: res.data })
@@ -44,15 +49,18 @@ export default function Home() {
         />
         <Button onClick={submit} />
       </div>
-      {loading ? <i className='fa fa-spinner fa-spin' style={{ fontSize: 80, marginLeft: '20%' }}></i> :
+      <div>
+      {loading ?<div style={styles.loadingposition}><Loader fontSize = {80} /></div>  :
         Opendata ? <div>
           <p style={styles.haedcontent}>{Weatherdata.data.name}</p>
           <p style={styles.headlabel}>{Weatherdata.data.weather[0].description}</p>
           <p>{Weatherdata.data.main.temp}&deg;C from {Weatherdata.data.main.temp_min} to {Weatherdata.data.main.temp_max}&deg;C,wind {Weatherdata.data.wind.speed} m/s .clouds {Weatherdata.data.clouds.all} %,{Weatherdata.data.main.pressure}hpa</p>
           <p style={styles.headlabel}>Geo Cords [{Weatherdata.data.coord.lat},{Weatherdata.data.coord.lon}]</p>
-        </div> : " "
+        </div> :errorcontent ? "No Data Found": " "
 
       }
+      </div>
+    
 
     </div>
   )

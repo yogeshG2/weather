@@ -6,7 +6,9 @@ function App() {
     landing: {
       margin: 'auto',
       width: '50%',
-      marginTop: '10%'
+      marginTop: '10%',
+      border:'2px solid',
+      padding:50
     }
   }
   return (
