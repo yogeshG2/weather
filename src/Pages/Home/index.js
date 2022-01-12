@@ -56,7 +56,7 @@ export default function Home() {
           <p style={styles.headlabel}>{Weatherdata.data.weather[0].description}</p>
           <p>{Weatherdata.data.main.temp}&deg;C from {Weatherdata.data.main.temp_min} to {Weatherdata.data.main.temp_max}&deg;C,wind {Weatherdata.data.wind.speed} m/s .clouds {Weatherdata.data.clouds.all} %,{Weatherdata.data.main.pressure}hpa</p>
           <p style={styles.headlabel}>Geo Cords [{Weatherdata.data.coord.lat},{Weatherdata.data.coord.lon}]</p>
-        </div> :errorcontent ? "No Data Found": " "
+        </div> :errorcontent ? <p style={{marginLeft:"5%",width:'50%',textAlign:'center'}}>No Data Found</p>: " "
 
       }
       </div>
