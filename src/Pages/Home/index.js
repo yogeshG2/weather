@@ -12,6 +12,8 @@ export default function Home() {
   const [Opendata, setOpendata] = useState(false)
   const [loading, setloading] = useState(false)
   const [errorcontent, seterrorcontent] = useState(false)
+  const [erroractive, seterroractive] = useState(false)
+
 
 
 
@@ -20,24 +22,31 @@ export default function Home() {
     setCity(value)
   }
   const submit = () => {
-    setloading(true)
-    seterrorcontent(false)
-    const inputdata = {
-      city: City
+    if(City === ""){
+      seterroractive(true)
     }
-    fetchdata(inputdata).then(res => {
-      if (res.data.error) {
-        setOpendata(false)
-        setloading(false)
-        seterrorcontent(true)
+    else{
+      seterroractive(false)
+      setloading(true)
+      seterrorcontent(false)
+      const inputdata = {
+        city: City
       }
-      else {
-        setWeatherdata({ ...Weatherdata, data: res.data })
-        setOpendata(true)
-        setloading(false)
-      }
-
-    })
+      fetchdata(inputdata).then(res => {
+        if (res.data.error) {
+          setOpendata(false)
+          setloading(false)
+          seterrorcontent(true)
+        }
+        else {
+          setWeatherdata({ ...Weatherdata, data: res.data })
+          setOpendata(true)
+          setloading(false)
+        }
+  
+      })
+    }
+  
   }
   return (
     <div>
@@ -46,9 +55,13 @@ export default function Home() {
       <div style={styles.container}>
         <Textfield
           onChange={(e) => handlechangecity(e.target.value)}
+          placeholder = "Type in your city name"
         />
+
         <Button onClick={submit} />
       </div>
+      <small>{erroractive ? <b>Please enter city name</b>:""}</small> 
+
       <div>
       {loading ?<div style={styles.loadingposition}><Loader fontSize = {80} /></div>  :
         Opendata ? <div>

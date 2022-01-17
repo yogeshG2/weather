@@ -6,9 +6,12 @@ function App() {
     landing: {
       margin: 'auto',
       width: '50%',
-      marginTop: '10%',
+      marginTop: '5%',
       border:'2px solid',
-      padding:50
+      padding:50,
+      height:500,
+      justifyContent:"center",
+      display:'flex'
     }
   }
   return (

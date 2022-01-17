@@ -5,6 +5,7 @@ export const styles = {
     headlabel: {
         fontWeight: 'bold',
         display: 'flex',
+        textTransform:'capitalize'
     },
     haedcontent: {
         fontWeight: 'bold',

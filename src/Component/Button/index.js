@@ -18,7 +18,7 @@ export const Button = ({ ...props }) => {
         <div>
             <input
                 type={"button"}
-                value={"Search"}
+                value={"SUBMIT"}
                 autoCapitalize
                 style={styles.button}
                 onClick={props.onClick}

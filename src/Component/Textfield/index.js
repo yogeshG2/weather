@@ -12,11 +12,16 @@ export const Textfield = ({ ...props }) => {
         }
     }
     return (
-            <input
+        <div>
+ <input
                 type="text"
                 value={props.value}
                 onChange={props.onChange}
                 style={styles.textfield}
+                placeholder={props.placeholder}
+               
             />
+        </div>
+           
     )
 }
