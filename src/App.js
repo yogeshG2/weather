@@ -5,7 +5,7 @@ function App() {
   const styles = {
     landing: {
       margin: 'auto',
-      width: '50%',
+      width: 800,
       marginTop: '5%',
       border:'2px solid',
       padding:50,
